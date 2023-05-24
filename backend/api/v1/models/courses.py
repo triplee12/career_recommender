@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Course database module."""
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, TIMESTAMP, text
 from sqlalchemy.orm import relationship
-from db_config import Base
+from backend.api.db_config import Base
 
 
 class Course(Base):
@@ -17,3 +17,7 @@ class Course(Base):
     user = relationship("Career", back_populates="preferences")
     career = relationship("Career", back_populates="courses")
     ratings = relationship("Rating", back_populates="course")
+    created_at = Column(
+        TIMESTAMP(timezone=True), nullable=False,
+        server_default=text("now()")
+    )

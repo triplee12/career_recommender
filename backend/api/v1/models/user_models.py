@@ -3,7 +3,7 @@
 from sqlalchemy import DateTime, String, text, Column, TIMESTAMP
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
-from db_config import Base
+from backend.api.db_config import Base
 
 PGSQL_UUID = UUID(as_uuid=False)
 
@@ -11,7 +11,7 @@ PGSQL_UUID = UUID(as_uuid=False)
 class User(Base):
     """User model for database users table."""
 
-    ___tablename__ = "users"
+    __tablename__ = "users"
     id = Column(PGSQL_UUID, primary_key=True, nullable=False)
     full_name = Column(String(150), nullable=False)
     username = Column(String(50), nullable=False, unique=True)
