@@ -18,7 +18,8 @@ class User(Base):
     email = Column(String(150), nullable=False, unique=True)
     password = Column(String(20), nullable=False)
     enrollments = relationship("Enrollment")
-    ratings = relationship("Rating")
+    preferences = relationship("Course", back_populates="user")
+    ratings = relationship("Rating", back_populates="user")
     created_at = Column(
         TIMESTAMP(timezone=True), nullable=False,
         server_default=text("now()")
