@@ -1,5 +1,7 @@
 # Career Recommendation System
 
+A career recommendation system is a technology-enabled tool designed to assist individuals in making informed decisions about their career path.
+
 ## APIs and Methods
 
 1. GET ``/courses``
