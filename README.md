@@ -86,7 +86,7 @@ The user can view the status of their job applications on their profile.
 ``UserBase(BaseModel)``:
 
 - ``name: str``
-- ``email: str``
+- ``email: EmailStr``
 
 ``UserCreate(UserBase)``:
 
@@ -99,6 +99,7 @@ The user can view the status of their job applications on their profile.
 ``User(UserBase)``:
 
 - ``id: int``
+- ``created_at: datetime``
 
     ``class Config``:
       -  ``orm_mode = True``
@@ -107,7 +108,7 @@ The user can view the status of their job applications on their profile.
 
 ``CourseBase(BaseModel)``:
 
-- ``name: str``
+- ``title: str``
 - ``description: str``
 
 ``CourseCreate(CourseBase)``:
@@ -121,6 +122,7 @@ The user can view the status of their job applications on their profile.
 ``Course(CourseBase)``:
 
 - ``id: int``
+- ``created_at: datetime``
 
     ``class Config``:
       -  ``orm_mode = True``
@@ -129,7 +131,7 @@ The user can view the status of their job applications on their profile.
 
 ``CareerBase(BaseModel)``:
 
-- ``name: str``
+- ``title: str``
 - ``description: str``
 
 ``CareerCreate(CareerBase)``:
@@ -167,13 +169,13 @@ The user can view the status of their job applications on their profile.
 
 ``Skill``:
 
-- ``name: str``
+- ``title: str``
 - ``proficiency: int``  Rating from 1 to 5
 
 ``CareerRecommendationRequest``:
 
 - ``name: str``
-- ``email: Emailstr``
+- ``email: EmailStr``
 - ``experience_level: ExperienceLevel``
 - ``skills: List[Skill]``
 
