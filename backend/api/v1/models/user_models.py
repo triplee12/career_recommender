@@ -12,13 +12,16 @@ class User(Base):
     """User model for database users table."""
 
     __tablename__ = "users"
-    id = Column(PGSQL_UUID, primary_key=True, nullable=False)
+    id = Column(
+        PGSQL_UUID, primary_key=True,
+        server_default=text("gen_random_uuid()"),
+        nullable=False
+    )
     full_name = Column(String(150), nullable=False)
     username = Column(String(50), nullable=False, unique=True)
     email = Column(String(150), nullable=False, unique=True)
     password = Column(String(20), nullable=False)
     enrollments = relationship("Enrollment")
-    preferences = relationship("Course", back_populates="user")
     ratings = relationship("Rating", back_populates="user")
     created_at = Column(
         TIMESTAMP(timezone=True), nullable=False,

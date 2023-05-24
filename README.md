@@ -86,6 +86,7 @@ The user can view the status of their job applications on their profile.
 ``UserBase(BaseModel)``:
 
 - ``name: str``
+- ``username``
 - ``email: EmailStr``
 
 ``UserCreate(UserBase)``:
@@ -98,7 +99,7 @@ The user can view the status of their job applications on their profile.
 
 ``User(UserBase)``:
 
-- ``id: int``
+- ``id: str``
 - ``created_at: datetime``
 
     ``class Config``:

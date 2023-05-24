@@ -9,11 +9,12 @@ class UserBase(BaseModel):
     User base class.
 
     Attributes:
-        name (str): name of the user
+        full_name (str): full name of the user
         email (str): email of the user
     """
 
-    name: str
+    full_name: str
+    username: str
     email: EmailStr
 
 
@@ -36,7 +37,7 @@ class User(UserBase):
         created_at (datetime): Date and time when the user was created
     """
 
-    id: int
+    id: str
     created_at: datetime
 
     class Config:

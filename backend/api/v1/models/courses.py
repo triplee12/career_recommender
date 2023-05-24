@@ -14,7 +14,6 @@ class Course(Base):
     title = Column(String, nullable=False)
     description = Column(String, nullable=False)
     career_id = Column(Integer, ForeignKey("careers.id"), nullable=False)
-    user = relationship("Career", back_populates="preferences")
     career = relationship("Career", back_populates="courses")
     ratings = relationship("Rating", back_populates="course")
     created_at = Column(

@@ -7,8 +7,8 @@ from fastapi.responses import RedirectResponse
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from backend.api.db_config import get_db
-from models.user_models import User as UserModel
-from schemas.user_schemas import (
+from backend.api.v1.models.user_models import User as UserModel
+from backend.api.v1.schemas.user_schemas import (
     UserCreate, User, UserUpdate
 )
 
@@ -88,6 +88,7 @@ async def create_user(
             detail="Error creating user"
         )
     except IntegrityError as error:
+        print(error)
         raise HTTPException(
             status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail="User with username or email already exists"
