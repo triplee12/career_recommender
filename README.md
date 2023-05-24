@@ -1,6 +1,6 @@
 # Career Recommendation System
 
-## APIs and Methods:
+## APIs and Methods
 
 1. GET ``/courses``
    - Description: Fetches a list of all available courses in the system.
@@ -48,7 +48,9 @@ As a user, I want to be able to receive notifications when new job listings are 
 As a user, I want to be able to track the status of my job applications so that I can know if I am being considered for employment.
 
 User Story 1: As a user, I want to be able to create a profile on the website so that I can access the features of the platform.
-Acceptance Criteria:
+
+## Acceptance Criteria
+
 The user can create a profile by providing their name, email address, and password.
 The user must verify their email address before they can log in to the platform.
 The user can edit their profile information at any time.
@@ -79,98 +81,101 @@ The user can view the status of their job applications on their profile.
 
 ### User
 
-``UserBase(BaseModel):
-    name: str
-    email: str``
+``UserBase(BaseModel)``:
 
+- ``name: str``
+- ``email: str``
 
-``UserCreate(UserBase):
-    password: str``
+``UserCreate(UserBase)``:
 
+- ``password: str``
 
-``UserUpdate(UserBase):
-    pass``
+``UserUpdate(UserBase)``:
 
+- ``pass``
 
-``User(UserBase):
-    id: int
+``User(UserBase)``:
 
-    class Config:
-        orm_mode = True``
+- ``id: int``
+
+    ``class Config``:
+      -  ``orm_mode = True``
 
 ### Course
 
-``CourseBase(BaseModel):
-    name: str
-    description: str``
+``CourseBase(BaseModel)``:
 
+- ``name: str``
+- ``description: str``
 
-``CourseCreate(CourseBase):
-    pass``
+``CourseCreate(CourseBase)``:
 
+- ``pass``
 
-``CourseUpdate(CourseBase):
-    pass``
+``CourseUpdate(CourseBase)``:
 
+- ``pass``
 
-``Course(CourseBase):
-    id: int
+``Course(CourseBase)``:
 
-    class Config:
-        orm_mode = True``
+- ``id: int``
+
+    ``class Config``:
+      -  ``orm_mode = True``
 
 ### Career
 
-``CareerBase(BaseModel):
-    name: str
-    description: str``
+``CareerBase(BaseModel)``:
 
+- ``name: str``
+- ``description: str``
 
-``CareerCreate(CareerBase):
-    pass``
+``CareerCreate(CareerBase)``:
 
+- ``pass``
 
-``CareerUpdate(CareerBase):
-    pass``
+``CareerUpdate(CareerBase)``:
 
+- ``pass``
 
-``Career(CareerBase):
-    id: int
+``Career(CareerBase)``:
 
-    class Config:
-        orm_mode = True``
+- ``id: int``
 
+    ``class Config``:
+      -  ``orm_mode = True``
 
-``CareerWithSkills(Career):
-    skills: List[str]``
+``CareerWithSkills(Career)``:
 
+- ``skills: List[str]``
 
-``CareerRecommendation(BaseModel):
-    recommended_career: Career
-    recommended_courses: List[str]``
+``CareerRecommendation(BaseModel)``:
+
+- ``recommended_career: Career``
+- ``recommended_courses: List[str]``
 
 ### Career Recommendation
 
 ``ExperienceLevel``:
- -   ``ENTRY_LEVEL = "Entry Level"``
- -   ``JUNIOR = "Junior"``
- -   ``MID_LEVEL = "Mid Level"``
- -   ``SENIOR = "Senior"``
 
+- ``ENTRY_LEVEL = "Entry Level"``
+- ``JUNIOR = "Junior"``
+- ``MID_LEVEL = "Mid Level"``
+- ``SENIOR = "Senior"``
 
 ``Skill``:
- -   ``name: str``
- -   ``proficiency: int``  Rating from 1 to 5
 
+- ``name: str``
+- ``proficiency: int``  Rating from 1 to 5
 
 ``CareerRecommendationRequest``:
- -   ``name: str``
- -   ``email: Emailstr``
- -   ``experience_level: ExperienceLevel``
- -   ``skills: List[Skill]``
 
+- ``name: str``
+- ``email: Emailstr``
+- ``experience_level: ExperienceLevel``
+- ``skills: List[Skill]``
 
 ``CareerRecommendationResponse``:
-  -  ``recommended_career: str``
-  -  ``recommended_courses: List[str]``
 
+- ``recommended_career: str``
+- ``recommended_courses: List[str]``
