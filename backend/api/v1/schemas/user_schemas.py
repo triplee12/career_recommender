@@ -4,6 +4,19 @@ from datetime import datetime
 from pydantic import BaseModel, EmailStr
 
 
+class AccessToken(BaseModel):
+    """Access Token schema class."""
+
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    """Token data."""
+
+    uuid_pk: str
+
+
 class UserBase(BaseModel):
     """
     User base class.
