@@ -11,8 +11,8 @@ from fastapi.openapi.models import OAuthFlows as OAuthFlowsModel
 from sqlalchemy.orm import Session
 from backend.api.db_config import get_db
 from backend.api.settings import settings
-from api.v1.models.user_models import User
-from api.v1.schemas.user_schemas import TokenData
+from backend.api.v1.models.user_models import User
+from backend.api.v1.schemas.user_schemas import TokenData
 
 # OAUTH2 = OAuth2PasswordBearer(tokenUrl="login_token")
 SECRET_KEY = settings.OAUTH2_SECRET_KEY
@@ -116,10 +116,10 @@ def verify_token(token: str, credentials_exception):
     """Verify access token provided by user."""
     try:
         decoded_jwt = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        user_id: str = decoded_jwt.get("uuid_pk")
+        user_id: str = decoded_jwt.get("id")
         if user_id is None:
             raise credentials_exception
-        token_data = TokenData(uuid_pk=user_id)
+        token_data = TokenData(id=user_id)
 
     except JWTError as exc:
         raise credentials_exception from exc
@@ -132,7 +132,6 @@ def get_current_user(
         session: Session = Depends(get_db)
 ):
     """Get current user helper."""
-    print(token)
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Invalid credentials",
@@ -141,7 +140,7 @@ def get_current_user(
 
     user = verify_token(token, credentials_exception)
     query = session.query(User).filter(
-        User.uuid_pk == user.uuid_pk
+        User.id == user.id
     ).first()
 
     return query

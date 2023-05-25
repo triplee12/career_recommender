@@ -14,7 +14,7 @@ class AccessToken(BaseModel):
 class TokenData(BaseModel):
     """Token data."""
 
-    uuid_pk: str
+    id: str
 
 
 class UserBase(BaseModel):
