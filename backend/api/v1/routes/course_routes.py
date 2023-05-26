@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from backend.api.db_config import get_db
 from backend.api.v1.models.courses import Course
 from backend.api.v1.schemas.course_schemas import (
-    CourseCreate, CourseUpdate, Course as CourseSchema,
+    CourseCreate, CourseUpdate, Course as CourseSchema
 )
 from backend.api.v1.auths.oauth import get_current_user
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Rating course database module."""
-from sqlalchemy import Column, ForeignKey, Integer, TIMESTAMP, text
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, TIMESTAMP, text
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
 from backend.api.db_config import Base
@@ -17,6 +17,7 @@ class Rating(Base):
     user_id = Column(PGSQL_UUID, ForeignKey("users.id"), nullable=False)
     course_id = Column(Integer, ForeignKey("courses.id"), nullable=False)
     rating = Column(Integer, nullable=False)
+    has_rated = Column(Boolean, default=False)
     created_at = Column(
         TIMESTAMP(timezone=True), nullable=False,
         server_default=text("now()")
