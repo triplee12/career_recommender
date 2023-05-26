@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Career database module."""
-from sqlalchemy import Column, Integer, String, text, TIMESTAMP
+from sqlalchemy import Column, Integer, String, text, TIMESTAMP, ForeignKey
 from sqlalchemy.orm import relationship
 from backend.api.db_config import Base
 
@@ -25,7 +25,8 @@ class Skill(Base):
     """Skill database model."""
 
     __tablename__ = "skills"
-    
+
     id = Column(Integer, primary_key=True, index=True)
+    career_id = Column(Integer, ForeignKey("careers.id"), nullable=False)
     title = Column(String(100), nullable=False)
     careers = relationship("Career", back_populates="skills")
