@@ -81,8 +81,6 @@ class CareerRecommendationRequest(BaseModel):
         skills: List[Skill]
     """
 
-    name: str
-    email: EmailStr
     experience_level: ExperienceLevel
     skills: List[Skill]
 
