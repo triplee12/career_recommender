@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Course schemas for the career recommendation."""
 from datetime import datetime
+from typing import Optional
 from pydantic import BaseModel
 
 
@@ -19,6 +20,8 @@ class CourseBase(BaseModel):
 
 class CourseCreate(CourseBase):
     """Create a new Course."""
+
+    owner_id: Optional[str]
 
 
 class CourseUpdate(CourseBase):

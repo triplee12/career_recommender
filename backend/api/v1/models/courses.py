@@ -2,7 +2,10 @@
 """Course database module."""
 from sqlalchemy import Column, Integer, String, ForeignKey, TIMESTAMP, text
 from sqlalchemy.orm import relationship
+from sqlalchemy.dialects.postgresql import UUID
 from backend.api.db_config import Base
+
+PGSQL_UUID = UUID(as_uuid=False)
 
 
 class Course(Base):
@@ -13,6 +16,7 @@ class Course(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, nullable=False)
     description = Column(String, nullable=False)
+    owner_id = Column(PGSQL_UUID, ForeignKey("users.id"), nullable=False)
     career_id = Column(Integer, ForeignKey("careers.id"), nullable=False)
     career = relationship("Career", back_populates="courses")
     ratings = relationship("Rating", back_populates="course")
