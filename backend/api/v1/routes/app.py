@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.api.v1.migrates import *
 from .user_routes import user_routers
+from .career_routes import career_router
 
 app = FastAPI(
     title="Career recommendation system",
@@ -33,3 +34,4 @@ async def main():
 
 
 app.include_router(user_routers)
+app.include_router(career_router)
