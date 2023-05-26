@@ -28,4 +28,4 @@ class Skill(Base):
     
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(100), nullable=False)
-    careers = relationship("Career", backref="skills", back_populates="skills")
+    careers = relationship("Career", back_populates="skills")
