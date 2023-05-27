@@ -2,7 +2,10 @@
 """Career database module."""
 from sqlalchemy import Column, Integer, String, text, TIMESTAMP, ForeignKey
 from sqlalchemy.orm import relationship
+from sqlalchemy.dialects.postgresql import UUID
 from backend.api.db_config import Base
+
+PGSQL_UUID = UUID(as_uuid=False)
 
 
 class Career(Base):
@@ -15,6 +18,11 @@ class Career(Base):
     description = Column(String, nullable=False)
     courses = relationship("Course", back_populates="career")
     skills = relationship("Skill", back_populates="careers")
+    user_id = Column(
+        PGSQL_UUID,
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False
+    )
     created_at = Column(
         TIMESTAMP(timezone=True), nullable=False,
         server_default=text("now()")
@@ -27,6 +35,11 @@ class Skill(Base):
     __tablename__ = "skills"
 
     id = Column(Integer, primary_key=True, index=True)
-    career_id = Column(Integer, ForeignKey("careers.id"), nullable=False)
+    career_id = Column(
+        Integer,
+        ForeignKey("careers.id", ondelete="CASCADE"),
+        nullable=False
+    )
     title = Column(String(100), nullable=False)
+    proficiency = Column(Integer, nullable=False)
     careers = relationship("Career", back_populates="skills")

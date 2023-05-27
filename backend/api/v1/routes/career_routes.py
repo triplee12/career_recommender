@@ -84,11 +84,16 @@ async def update_career(
     """Update a career."""
     if current_user:
         get_career = session.query(Career).filter(Career.id == id_)
-        if get_career.one_or_none():
+        if get_career.one_or_none().user_id == current_user.id:
             update_c = get_career.update(**career.dict())
             session.commit()
             session.refresh(update_c)
             return update_c
+        elif get_career.one_or_none().user_id != current_user.id:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Access denied"
+            )
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Career does not exist"
@@ -104,10 +109,15 @@ async def delete_career(
     """Delete a career."""
     if current_user:
         career = session.query(Career).filter(Career.id == id_)
-        if career.first():
+        if career.first().user_id == current_user.id:
             career.delete()
             session.commit()
             return
+        elif career.first().user_id != current_user.id:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Access denied"
+            )
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Career does not exist"
@@ -122,6 +132,7 @@ async def create_career(
 ):
     """Create a new career."""
     if current_user:
+        career.user_id = current_user.id
         new_career = Career(**career.dict())
         session.add(new_career)
         session.commit()

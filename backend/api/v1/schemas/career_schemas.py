@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """Recommendation schemas."""
+from datetime import datetime
 from enum import Enum
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel, EmailStr
+from pydantic.types import conint
 
 
 class CareerBase(BaseModel):
@@ -21,6 +23,8 @@ class CareerBase(BaseModel):
 class CareerCreate(CareerBase):
     """Create career."""
 
+    user_id: Optional(str)
+
 
 class CareerUpdate(CareerBase):
     """Career Update."""
@@ -35,6 +39,7 @@ class Career(CareerBase):
     """
 
     id: int
+    created_at: datetime
 
     class Config:
         """Career serialization."""
@@ -67,7 +72,7 @@ class Skill(BaseModel):
     """
 
     title: str
-    proficiency: int  # Rating from 1 to 5
+    proficiency: conint(ge=1, le=5)  # Rating from 1 to 5
 
 
 class CareerRecommendationRequest(BaseModel):

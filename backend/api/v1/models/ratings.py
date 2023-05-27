@@ -14,8 +14,16 @@ class Rating(Base):
     __tablename__ = "ratings"
 
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(PGSQL_UUID, ForeignKey("users.id"), nullable=False)
-    course_id = Column(Integer, ForeignKey("courses.id"), nullable=False)
+    user_id = Column(
+        PGSQL_UUID,
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False
+    )
+    course_id = Column(
+        Integer,
+        ForeignKey("courses.id", ondelete="CASCADE"),
+        nullable=False
+    )
     rating = Column(Integer, nullable=False)
     has_rated = Column(Boolean, default=False)
     created_at = Column(
