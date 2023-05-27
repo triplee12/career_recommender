@@ -193,7 +193,7 @@ async def login_basic(
 
             token = jsonable_encoder(access_token)
 
-            response = RedirectResponse(url="/api")
+            response = RedirectResponse(url="/api/v1/courses")
             response.set_cookie(
                 "Authorization",
                 value=f"Bearer {token}",

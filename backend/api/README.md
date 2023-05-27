@@ -1,3 +1,0 @@
-# Recommendation System Backend
-
-## Api
