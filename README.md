@@ -4,7 +4,7 @@ A career recommendation system is a technology-enabled tool designed to assist i
 
 ## APIs and Methods
 
-### User Authentication API and Methods
+### User Authentication APIs and Methods
 
 1. POST ``/users/login_token``
    - Description: Verifies the provided username and password against the existing user data
@@ -18,7 +18,7 @@ A career recommendation system is a technology-enabled tool designed to assist i
    - Description: Logout the user
    - Response: Redirects the user to the homepage on successful logout
 
-### User API and Methods
+### User APIs and Methods
 
 1. GET ``/users``
    - Description: Fetches a list of all available users in the system.
@@ -59,7 +59,7 @@ A career recommendation system is a technology-enabled tool designed to assist i
    - Parameters: ``user_id`` (path parameter) - The unique identifier of the user.
    - Response: Returns an array of course objects representing the enrolled courses for the user.
 
-### Course API and Methods
+### Course APIs and Methods
 
 1. GET ``/courses``
    - Description: Fetches a list of all available courses in the system.
@@ -96,7 +96,7 @@ A career recommendation system is a technology-enabled tool designed to assist i
    - Request Body: Contains the user's rating for the course.
    - Response: Returns a success message indicating that the rating has been recorded.
 
-### Career API and Methods
+### Career APIs and Methods
 
 1. GET ``/careers``
    - Description: Fetches a list of all available careers in the system.
