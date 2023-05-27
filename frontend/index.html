@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Recommendation System</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <body>
+        <header>
+          <div class="container">
+            <h1 class="text-center">Career Recommendation System</h1>
+          </div>
+        </header>
+        <main>
+            <section class="recommendation">
+                <div class="container">
+                  <h2>Recommended Career:</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae aliquam purus, id tincidunt nibh.</p>
+                  <button class="btn btn-primary" onclick="toggleDetails()">Learn More</button>
+                  <div id="details" style="display: none;">
+                    <h3>Additional Details</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae aliquam purus, id tincidunt nibh.</p>
+                  </div>
+                </div>
+              </section>
+          <section class="options">
+            <div class="container">
+              <h2>Choose your preferences:</h2>
+              <form id="recommendation-form">
+                <div class="mb-3">
+                  <label for="field" class="form-label">Field of Interest:</label>
+                  <select id="field" class="form-select">
+                    <option value="technology">Technology</option>
+                    <option value="business">Business</option>
+                    <option value="creative">Creative</option>
+                    <option value="medical">Medical</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="location" class="form-label">Preferred Location:</label>
+                  <input type="text" id="location" class="form-control" placeholder="Enter your preferred location">
+                </div>
+                <div class="mb-3">
+                  <label for="education" class="form-label">Education Level:</label>
+                  <select id="education" class="form-select">
+                    <option value="high-school">High School</option>
+                    <option value="bachelors">Bachelor's Degree</option>
+                    <option value="masters">Master's Degree</option>
+                    <option value="phd">Ph.D.</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Get Recommendations</button>
+              </form>
+            </div>
+          </section>
+        </main>
+        <footer>
+          <div class="container">
+            <p class="text-center">&copy; 2023 Career Recommendation System by Dolapo and Ebuka. All rights reserved.</p>
+          </div>
+        </footer>
+      
+        <!-- Bootstrap JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Custom JavaScript -->
+        <script src="script.js"></script>
+      </body>
+      </html>
