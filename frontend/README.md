@@ -10,7 +10,9 @@ Submission Feedback: After submitting the preference form, users receive a succe
 
 # Technologies Used
 HTML: The structure and layout of the web page.
+
 CSS (Bootstrap): Styling and responsiveness of the web page.
+
 JavaScript: Interactivity and functionality of the web page.
 
 # How to Use
@@ -28,6 +30,7 @@ If the recommendation submission is successful, a success message will be displa
 
 # Authors
 Dolapo Adegoju
+
 Ebuka Ejie
 
 # License
