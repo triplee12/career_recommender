@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="author" content="Ayoub Berdeddouch">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+	<meta property="og:site_name" content="" /> <!-- website name -->
+	<meta property="og:site" content="" /> <!-- website link -->
+	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+	<meta property="og:type" content="article" />
+
+    <!-- Website Title -->
+    <title>Columbia - Career Recommendation System</title>
+    
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
+	<link href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/fontawesome-all.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/swiper.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/magnific-popup.css')}}" rel="stylesheet">
+	<link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet">
+
+	
+	
+
+	
+	<!-- Favicon  -->
+    <link rel="icon" href="{{url_for('static', filename='images/logo_recsys.png')}}" >
+</head>
+<body data-spy="scroll" data-target=".fixed-top">
+    
+    <!-- Preloader -->
+	<div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+    
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
+        <!-- Text Logo - Use this if you don't have a graphic logo -->
+        <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Aria</a> -->
+        <!-- Image Logo -->
+        <a class="navbar-brand logo-image" href="/"><img src="{{url_for('static', filename='images/logo_recsys.png')}}" style="height: ;40px,width:40px;" 	alt="alternative"></a>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-awesome fas fa-bars"></span>
+            <span class="navbar-toggler-awesome fas fa-times"></span>
+        </button>
+        <!-- end of mobile menu toggle button -->
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#Recommendation">RECOMMENDATION</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#Visualize">VISUALIZE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#Insights">INSIGHTS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#contact">CONTACT</a>
+                </li>
+            </ul>
+           
+        </div>
+    </nav> <!-- end of navbar -->
+    <!-- end of navbar -->
+
+
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-container">
+                            <h1>Career Data <span id="js-rotating"> Analysis, Recommendation, Visualization</span></h1>
+                            <p class="p-heading p-large"></p>
+                            <a class="btn-solid-lg page-scroll" href="#Recommendation">Get Recommendation</a>    
+							<!-- <a class="btn-solid-lg page-scroll" href="#Visualize">Visualize Data</a> -->
+
+                        </div>
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
+
+<!-- Description -->
+    <div id="Predict" class="cards-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    
+                    <!-- Card -->
+                    <div class="card">
+                        <span class="fa-stack">
+                            <span class="hexagon"></span>
+                            <i class="fas fa-binoculars fa-stack-1x"></i>
+                        </span>
+                        <div class="card-body">
+                            <h4 class="card-title">Data Analysis</h4>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card">
+                        <span class="fa-stack">
+                            <span class="hexagon"></span>
+                            <i class="fas fa-list-alt fa-stack-1x"></i>
+                        </span>
+                        <div class="card-body">
+                            <h4 class="card-title">Data Visualization</h4>
+                            
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                    <!-- Card -->
+                    <div class="card">
+                        <span class="fa-stack">
+                            <span class="hexagon"></span>
+                            <i class="fas fa-chart-pie fa-stack-1x"></i>
+                        </span>
+                        <div class="card-body">
+                            <h4 class="card-title">Recommendations</h4>
+                        </div>
+                    </div>
+                    <!-- end of card -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of cards-1 -->
+    <!-- end of description -->
+    <!-- Intro -->
+    <div >
+        <div id="Recommendation" class="counter">
+          <!-- Predict -->
+			<div class="container">
+                
+				<div class="row">
+                <div class="col-lg-6">
+                <div class="section-title">Recommendation</div>    
+                    <div class="text-container">
+                        
+                    </div>
+                </div> <!-- end of col -->
+                <div class="col-lg-6">
+                   
+                    <!-- Call Me Form -->
+                    <form id="callMeForm" data-toggle="validator" data-focus="false">
+                        <div class="form-group">
+							<a type="submit" class="form-control-submit-button" href="career_rs">Recommendation</a>
+                        </div>   
+                    </form>
+                    <!-- end of call me form -->
+                    
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    <!-- end of call me -->
+    </div> <!-- end of basic-1 -->
+    <!-- end of intro -->
+<!-- Services -->
+    <div id="Visualize" class="cards-2">
+        <div class="container">
+            <div class="row">
+			    <div class="card-body">
+
+                <div class="col-lg-12">
+				<div class="section-title">Visualization</div>
+				<h2>Get Knowledge about Saber 11 & Saber Pro.</h2>
+
+                    <p>The EDA through the whole Data set</p>
+				 <ul class="list-unstyled li-space-lg">
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Select the report1 as target Career_major</div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Select the report1 as target Career_minor</div>
+                            </li>
+							
+                        </ul>
+				    <!-- Call Me Form -->
+                    <form id="callMeForm" data-toggle="validator" data-focus="false">
+                        <div class="form-group">
+                            <a type="submit" class="form-control-submit-button" href="report1">Report on the whole Dataset as Target <span>Career_Major</a>
+                        </div>
+                        <!-- Call Me Form -->
+                    <form id="callMeForm" data-toggle="validator" data-focus="false">
+                        <div class="form-group">
+                            <a type="submit" class="form-control-submit-button" href="report2">Report on the whole Dataset as Target <span>Career_Minor</a>
+                        </div>   
+                    </form>   
+                    </form>
+				</div>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of cards-2 -->
+    <!-- end of services -->
+<div id="Insights" class="counter">
+        <div class="container">
+            <div class="section-title">Colombia Career Data Insights</div>
+            <div class="row">
+                <div class="col-lg-5 col-xl-6">
+                     <div>
+                        <img class="center" src="{{url_for('static', filename='images/clustered-scores.png')}}"
+                        width="500" height="300"  alt="clustered-scores">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-7 col-xl-6">
+                        <div class="text-container">
+                            <h5> Using KPrototypes Clustering Algorithm  </h5>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                    <div class="media-body">
+                                        The resulting dataset was clustered into three (3) clusters. Shown below are the clusters (First, Second, and Third) based on their Saber and Saber Pro scores.
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                    <div class="media-body">
+                                        Cluster 1 (Blue) students seem to have extremely low Saber Pro scores. Cluster 3 (Orange) students score highly on both Saber and Saber Pro scores while Cluster 2 (Green) students lie in the middle. 
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                            </div> <!-- end of text-container -->      
+                        </div> <!-- end of col -->
+                    </div> <!-- end of row -->
+
+                <!-- END Row 1 -->
+                <hr>
+                <div class="row">
+                    <div class="col-lg-5 col-xl-6">
+                        <div>
+                        <img class="center" src="{{url_for('static', filename='images/test-prep.png')}}"
+                        width="500" height="300"  alt="test-prep">
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-7 col-xl-6">
+                        <div class="text-container">
+                            Let's now characterize the student's by their social context.
+                            <h5> Characterization via Access to Test Preparation </h5>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            The first characterization is access to test preparation as it is reasonable to hypothesize that having more access to preparation courses and tests impact test scores positively.
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            It can be immediately seen that Cluster 1 students hold the majority of students who did not have access to any form of test preparation. We look at test preparation of Cluster 1 students more deeply. 
+                                        </div>
+                                </li>
+                            </ul>
+                                    
+                        </div> <!-- end of text-container -->      
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+                <!-- END Row 2 -->
+                <hr>
+                <div class="row">
+                    <div class="col-lg-5 col-xl-6">
+                        <div>
+                        <img class="center" src="{{url_for('static', filename='images/pie-chart-test-prep.png')}}" 
+                        width="500" height="500"  alt="pie-chart-test-prep">
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-7 col-xl-6">
+                        <div class="text-container">
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            89% of students belonging to Cluster 1 did not have access to test preparation! There is a great degree of difference in Test preparation between Cluster 1 and Clusters 2 and 3.
+                                        </div>
+                                </li>
+                                <!-- <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            It can be immediately seen that Cluster 1 students hold the majority of students who did not have access to any form of test preparation. We look at test preparation of Cluster 1 students more deeply. 
+                                        </div>
+                                </li> -->
+                            </ul>
+                                    
+                        </div> <!-- end of text-container -->      
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+                <hr>
+                <!-- END Row 3 -->
+                <div class="row">
+                    <div class="col-lg-5 col-xl-6">
+                        <div>
+                        <img  src="{{url_for('static', filename='images/parent-education-mother.png')}}" 
+                        alt="parent-education">
+                        <br>
+                        <img  src="{{url_for('static', filename='images/parent-education-father.png')}}" 
+                        alt="parent-education">
+                        <br>
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-7 col-xl-6">
+                        <div class="text-container">
+                            <h5> Characterization via Parent's Educational Attainment </h5>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            The second characterization is based on the parent's educational attainment basing from the hypothesis that more educated parents get more opportunities which increases the opportunities and resources of their family.
+                                            This greater access to opportunities then influences test scores positively. 
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            Approximately 42% of Elementary School Completers and 40% of Elementary School Incomplete belong to Cluster 1 student's parents.
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            Cluster 2 parents have a majority on Middle School Complete and Middle School Incomplete at about 40% and Technical School Complete and Technical School Incomplete at approximately 40%.
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            Approximately 70% of Graduate Degrees Holders and 58% of Undergraduate Degree holders belong to Cluster 3 students' parents.
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            In terms of educational attainment, Cluster 3 parents have the highest educational attainment. Cluster 2 parents lie in the middle and Cluster 1 parents have the lowest educational attainment.
+                                        </div>
+                                </li>
+                            </ul>
+                                    
+                        </div> <!-- end of text-container -->      
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+
+                <!-- END Row 4 -->
+                <hr>
+                <div class="row">
+                    <div class="col-lg-5 col-xl-6">
+                        <div>
+                        <img class="center" src="{{url_for('static', filename='images/stratum.png')}}"
+                        width="500" height="300"  alt="alternative"><br>
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-7 col-xl-6">
+                        <div class="text-container">
+                            <h5> Characterization via Housing Stratum Level </h5>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                           One key indicator of social status in Colombia is the housing stratum level of a person with 1 being the lowest and 6 being the highest. Thus, we look at the housing level per cluster.
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            There is a stark divide observed in housing stratums. 78% of stratum 6 housing belong to Cluster 3 students while 22% belong to Cluster 2 students. 
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            Almost no Cluster 1 students belong to Stratum 4-6 housing and 40% of Stratum 1 housing belong to Cluster 1 students and 32% of Stratum 2 housing belong to Cluster 2 students. 
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            Almost no Cluster 1 students belong to Stratum 4-6 housing and 40% of Stratum 1 housing belong to Cluster 1 students and 32% of Stratum 2 housing belong to Cluster 2 students. 
+                                        </div>
+                                </li>
+                            </ul>
+                            <p> Therefore, these characterizations show a great divide between Cluster 1 and Cluster 2 and even more so between Cluster 1 and Cluster 3 when it comes to access to important resources. </p>
+                                    
+                        </div> <!-- end of text-container -->      
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+                <!-- END Row 5 -->
+                <hr>
+                <div class="row">
+                    <div class="col-lg-5 col-xl-6">
+                        <div>
+                        <h5> Cluster 1 Courses </h5>
+                        <img class="center" src="{{url_for('static', filename='images/cluster 1 courses.png')}}"
+                        width="550"   alt="alternative">
+                        <h5> <br> Cluster 2 Courses </h5>
+                        <img class="center" src="{{url_for('static', filename='images/cluster 2 courses.png')}}"
+                        width="550"   alt="alternative">
+                        <h5> <br> Cluster 3 Courses </h5>
+                        <img class="center" src="{{url_for('static', filename='images/cluster 3 courses.png')}}"
+                        width="550"   alt="alternative">
+                        <br>
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-7 col-xl-6">
+                        <div class="text-container">
+                            <h5> Clusters by Undergraduate Courses </h5>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            Now that a divide has been seen based on the social context of students, we explore whether these divisions affect the university courses these students take. 
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            We ranked the courses by saber 11 mean scores and we divided the courses based on the group of students which hold the majority. 
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            A majority is defined by having greater than 50% of its students belong to a specific Cluster. We show the top 5 courses by mean score per cluster. 
+                                        </div>
+                                </li>
+
+                            </ul>
+                            <p>There were a total of 58 valid courses in this dataset. </p>
+                                <ul>
+                                    <li> Cluster 1 students take courses with low mean scores. </li>
+                                    <li> Cluster 2 students take courses with low to medium mean scores. </li>
+                                    <li> Cluster 3 students take courses with high mean scores. </li>
+                                </ul>
+                            <p>    Due to the divide in access of resources, Cluster 1 students get into courses which hold low mean scores while Cluster 3 students get into courses which have the highest mean scores of all the courses.</p>
+                            
+
+                        </div> <!-- end of text-container -->      
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+
+                <!-- END Row 6 -->
+                <hr>
+                <div class="row">
+                    <div class="col-lg-5 col-xl-6">
+                        <div>
+                        <img src="{{url_for('static', filename='images/dominant-clusters.png')}}"
+                        width="550"  alt="dominant-clusters">
+                        <img src="{{url_for('static', filename='images/dominant-municipalities.png')}}"
+                        width="550"  alt="dominant-municipalities">
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col --> 
+                    <div class="col-lg-7 col-xl-6">
+                        <div class="text-container">
+                            <h5> Geospatial Mapping by Clusters</h5> 
+                            <p> To complement the cluster analysis, we map the dominant clusters per each department which are equivalent to Colombian’s States. </p>
+                            <ul class="list-unstyled li-space-lg">
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            We observe that the larger number of departments belong to cluster 3, in fact 26 out of 34 entities (76.5%). Only 5 states belong to the Second cluster (14.7%), and 3 entities -considering the Capital District Bogota- to the First cluster (8.8%). 
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            The cluster mappings by Municipality shows a clear majority to the third cluster and a minority to the first cluster. 
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            From the 1,039 municipalities in the database, 645 municipalities belong to the third cluster (62.1%), 313 municipalities belong to the second cluster (30.1%), and 81 municipalities to the first cluster (7.8%).
+                                        </div>
+                                </li>
+                                <li class="media">
+                                    <i class="fas fa-square"></i>
+                                        <div class="media-body">
+                                            Some municipalities have null value as dominant cluster, which could be explained because of lack of information or errors to map the clusters between databases. 
+                                        </div>
+                                </li>
+                            </ul>            
+                        </div> <!-- end of text-container -->      
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->  
+                <!-- END Row 7 -->                     
+                
+                <br>
+                <br>
+                <div class="row">
+                        <h4> Clustering Summary </h4>
+
+                        <p> Based on the insights generated in the clustering analysis and geospatial mapping, we can distinguish each cluster based on the following characteristics: </p>
+                        
+                        <h5> <br> Cluster 3: The Upper Class </h5>
+
+                        <p> This cluster features a group of students with great privileges. Their parents are graduate and undergraduate degree holders with stable occupations. They have access to the internet, computer, and test preparation resources and live in Stratum 4 to 6 housing. <br>
+                        
+                        These are the students who belong at the top of the pack, getting the highest scores and going to courses which hold a high mean score among all undergraduate cores. 
+                        </p>
+                        <h5> <br> Cluster 2: The Middle Class </h5>
+
+                        <p> This cluster features a group of students with privileges. Their parents are at least middle school graduates with stable occupations. They have access to internet, computer, and test preparation resources and live in Stratum 1 to Stratum 4 housing. <br>
+                        
+                        These are the students who have enough resources to get good scores, getting courses that belong to the middle of the pack with regard to mean scores. 
+                            They are not the best in terms of scores, but definitely not the worst as well.
+                        </p>
+
+                        <h5> <br> Cluster 1: The Lower Class </h5>
+
+                        <p> This cluster features a group of students with a lack of privileges. Majority of their parents are elementary graduates and elementary incompleters with unstable occupations ranging from high-end occupations to no work at all. <br>
+                
+                        Majority of the students with no internet access belong to this class and they live in Stratum 1 to Stratum 2 housing. <br>
+                        
+                        They have little to no access to test preparations and as such, they get the worst scores among all clusters and get into subjects which hold the lowest mean saber scores. 
+                            They are the underprivileged cluster that require special attention. 
+                        </p>
+                        <p align="left">To know more about the data analysis look at this project on 
+                            <strong><a href= "https://github.com/OmdenaAI/omdena-colombia-career-recommender-system">Project on Github</a></strong>
+                        </p>
+            </div> <!-- end of row -->
+
+        </div> <!-- end of container -->
+    </div> <!-- end of counter -->
+    <!-- end of about -->
+
+    <!-- Footer -->
+    <div id=contact class="footer">
+        <div class="container">
+            <div class="row">
+            <img class="card-image" src="{{url_for('static', filename='images/Colombia2.png')}}"  width="150" height="150" alt="alternative">
+
+                <div class="col-md-6">
+                    <div class="text-container about">
+                        <h4>Developed by:</h4>
+                        <h2 class="white">Omdena - Chapter Colombia Team</h2>
+                        <!-- <p class="white"><i class="fas fa-briefcase">&nbsp;&nbsp;Data Scientist &amp; Associate Cloud Engineer &amp; Ph.D. Candidate</i></p>
+                        <p class="white"><i class="fa fa-map-marker" aria-hidden="true">&nbsp;&nbsp;Morocco</i></p>
+                        <p class="white"><i class="fa fa-envelope" aria-hidden="true">&nbsp;&nbsp;ayoub.berd@gmail.com</i></p>
+                     -->
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                <div class="col-md-2">
+                    <div class="text-container">
+                        <h4>Connect</h4>
+                        <ul class="list-unstyled li-space-lg white">
+                            <li>
+                                <a class="white" href="https://omdena.com/omdena-chapter-page-colombia/"><i class="fab fa-linkedin-in"></i></a>&nbsp;&nbsp;<a class="white" href="https://github.com/OmdenaAI/omdena-colombia-career-recommender-system"><i class="fab fa-github"></i></a>
+                            </li>
+                            
+                        </ul>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                <div class="col-md-2">
+                    <div class="text-container">
+                        <h4>Tools Used</h4>
+                        <ul class="list-unstyled li-space-lg">
+                            <li>
+                                <a class="white" href="#">Python</a>
+                            </li>
+                            <li>
+                               <a class="white" href="#">Seaborn &amp; Matplotlib &amp; Plotly</a>
+                            </li>
+                            <li class="media">
+                                <a class="white" href="#">Scikit-learn</a>
+                            </li>
+                            <li class="media">
+                                <a class="white" href="#">Flask</a>
+                            </li>
+                            <li class="media">
+                                <a class="white" href="#">Scikit-learn</a>
+                            </li>
+                            <li class="media">
+                                <a class="white" href="#">SweetViz</a>
+                            </li>
+                            <li class="media">
+                                <a class="white" href="#">LIME</a>
+                            </li>
+                        </ul>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of footer -->  
+    <!-- end of footer -->
+
+    
+    	
+    <!-- Scripts -->
+    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+	<script src="{{url_for('static', filename='js/popper.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="{{url_for('static', filename='js/jquery.easing.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="{{url_for('static', filename='js/jquery.magnific-popup.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="{{url_for('static', filename='js/morphext.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="{{url_for('static', filename='js/isotope.pkgd.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="{{url_for('static', filename='js/validator.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+	<script src="{{url_for('static', filename='js/scripts.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+</body>
+</html>

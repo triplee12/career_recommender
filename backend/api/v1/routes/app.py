@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 """Career recommendation entry point."""
-from sys import prefix
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+from backend.api.settings import TEMPLATES, BASE_PATH
 from backend.api.v1.migrates import *
 from .user_routes import user_routers
 from .career_routes import career_router
@@ -17,6 +19,10 @@ app = FastAPI(
     version="v1.0"
 )
 
+app.mount(str(BASE_PATH / "/static"), StaticFiles(
+    directory=str(BASE_PATH / "static")
+), name="static")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -27,13 +33,13 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-async def main():
+@app.get("/", response_class=HTMLResponse)
+async def main(request: Request):
     """Career recommendation entry point."""
-    return {
-        "message": "Welcome to the Career recommendation system"
-    }
-
+    return TEMPLATES.TemplateResponse(
+        "index.html",
+        {"request": request},
+    )
 
 app.include_router(user_routers, prefix="/api/v1")
 app.include_router(career_router, prefix="/api/v1")
