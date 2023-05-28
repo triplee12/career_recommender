@@ -3,7 +3,7 @@
 from datetime import datetime
 from enum import Enum
 from typing import List, Optional
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from pydantic.types import conint
 
 
@@ -23,7 +23,7 @@ class CareerBase(BaseModel):
 class CareerCreate(CareerBase):
     """Create career."""
 
-    user_id: Optional(str)
+    user_id: Optional[str]
 
 
 class CareerUpdate(CareerBase):

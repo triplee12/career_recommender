@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 """Base settings for the application."""
+from pathlib import Path
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseSettings
+
+BASE_PATH = Path(__file__).resolve().parent
+TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 
 
 class Settings(BaseSettings):
