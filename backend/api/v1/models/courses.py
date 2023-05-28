@@ -16,8 +16,16 @@ class Course(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, nullable=False)
     description = Column(String, nullable=False)
-    owner_id = Column(PGSQL_UUID, ForeignKey("users.id"), nullable=False)
-    career_id = Column(Integer, ForeignKey("careers.id"), nullable=False)
+    owner_id = Column(
+        PGSQL_UUID,
+        ForeignKey("users.id", ondelete="CASCADE"),
+        nullable=False
+    )
+    career_id = Column(
+        Integer,
+        ForeignKey("careers.id", ondelete="CASCADE"),
+        nullable=False
+    )
     user = relationship("Career", back_populates="preferences")
     career = relationship("Career", back_populates="courses")
     ratings = relationship("Rating", back_populates="course")
