@@ -3,14 +3,17 @@
 import base64
 from datetime import datetime
 from typing import List
-from fastapi import APIRouter, Depends, status, Response, HTTPException
-from fastapi.responses import RedirectResponse
+from fastapi import (
+    APIRouter, Depends, status,
+    Response, HTTPException, Request
+)
+from fastapi.responses import RedirectResponse, HTMLResponse
 from fastapi.encoders import jsonable_encoder
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from backend.api.db_config import get_db
-from backend.api.settings import settings
+from backend.api.settings import settings, TEMPLATES
 from backend.api.v1.models.user_models import User
 from backend.api.v1.schemas.user_schemas import (
     UserCreate, UserUpdate, User as UserSchema
@@ -25,14 +28,19 @@ from backend.api.v1.utils import (
 user_routers = APIRouter(prefix="/users", tags=["users"])
 
 
-@user_routers.get("/", response_model=List[UserSchema])
-async def retrieve_users(session: Session = Depends(get_db)):
+@user_routers.get("/", response_class=HTMLResponse)
+@user_routers.get("/api/v1", response_model=List[UserSchema])
+async def retrieve_users(request: Request, session: Session = Depends(get_db)):
     """Retrieve users from the database."""
     users = session.query(User).all()
-    return users
+    if request.get("127.0.0.1/users"):
+        return TEMPLATES.TemplateResponse("users.html", {"users": users})
+    if request.get("127.0.0.1/users/api/v1"):
+        return users
 
 
-@user_routers.get("/{id_}", response_model=UserSchema)
+@user_routers.get("/{id_}", response_class=HTMLResponse)
+@user_routers.get("/{id_}/api/v1", response_model=UserSchema)
 async def retrieve_user(id_: str, session: Session = Depends(get_db)):
     """Retrieve a user from the database."""
     user = session.query(User).filter(User.id == id_).one_or_none()
@@ -45,7 +53,8 @@ async def retrieve_user(id_: str, session: Session = Depends(get_db)):
     )
 
 
-@user_routers.put("/{id_}/update", response_model=UserSchema)
+@user_routers.put("/{id_}/update", response_class=HTMLResponse)
+@user_routers.put("/{id_}/update/api/v1", response_model=UserSchema)
 async def update_user(
     id_: str, user: UserUpdate,
     current_user: str = Depends(get_current_user),
@@ -72,6 +81,7 @@ async def update_user(
 
 
 @user_routers.delete("/{id_}/delete")
+@user_routers.delete("/{id_}/delete/api/v1")
 async def delete_user(
     id_: str, session: Session = Depends(get_db),
     current_user: str = Depends(get_current_user),
@@ -94,7 +104,8 @@ async def delete_user(
     )
 
 
-@user_routers.post("/create", response_model=UserSchema)
+@user_routers.post("/create", response_model=HTMLResponse)
+@user_routers.post("/create/api/v1", response_model=UserSchema)
 async def create_user(
     user: UserCreate, response: Response,
     session: Session = Depends(get_db)

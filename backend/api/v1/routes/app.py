@@ -41,6 +41,6 @@ async def main(request: Request):
         {"request": request},
     )
 
-app.include_router(user_routers, prefix="/api/v1")
-app.include_router(career_router, prefix="/api/v1")
-app.include_router(course_router, prefix="/api/v1")
+app.include_router(user_routers)
+app.include_router(career_router)
+app.include_router(course_router)
