@@ -26,7 +26,7 @@ class Course(Base):
         ForeignKey("careers.id", ondelete="CASCADE"),
         nullable=False
     )
-    user = relationship("Career", back_populates="preferences")
+    user = relationship("User", back_populates="preferences")
     career = relationship("Career", back_populates="courses")
     ratings = relationship("Rating", back_populates="course")
     created_at = Column(

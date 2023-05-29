@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 """Career routes module."""
 from typing import List
-from fastapi import APIRouter, Depends, status, HTTPException
+from fastapi import APIRouter, Depends, status, HTTPException, Request
+from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
 from backend.api.db_config import get_db
+from backend.api.settings import TEMPLATES
 from backend.api.v1.models.careers import Career
 from backend.api.v1.schemas.career_schemas import (
     CareerCreate, CareerUpdate, Career as CareerSchema,
@@ -15,14 +17,18 @@ from backend.api.v1.auths.oauth import get_current_user
 career_router = APIRouter(prefix="/careers", tags=["careers"])
 
 
-@career_router.get("/", response_model=List[CareerSchema])
+@career_router.get("/", response_class=HTMLResponse)
+@career_router.get("/api/v1", response_model=List[CareerSchema])
 async def retrieve_careers(
-    current_user: str = Depends(get_current_user),
+    request: Request,
+    # current_user: str = Depends(get_current_user),
     session: Session = Depends(get_db)
 ):
     """Retrieve all the available careers."""
-    if current_user:
-        careers = session.query(Career).all()
+    careers = session.query(Career).all()
+    if request.get("127.0.0.1/careers"):
+        return TEMPLATES.TemplateResponse("careers.html", {"careers": careers})
+    if request.get("127.0.0.1/careers/api/v1"):
         return careers
 
 
