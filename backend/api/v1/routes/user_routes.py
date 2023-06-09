@@ -29,24 +29,19 @@ user_routers = APIRouter(prefix="/users", tags=["users"])
 
 
 @user_routers.get("/", response_class=HTMLResponse)
-@user_routers.get("/api/v1", response_model=List[UserSchema])
 async def retrieve_users(request: Request, session: Session = Depends(get_db)):
     """Retrieve users from the database."""
     users = session.query(User).all()
-    if request.get("127.0.0.1/users"):
-        return TEMPLATES.TemplateResponse("users.html", {"users": users})
-    if request.get("127.0.0.1/users/api/v1"):
-        return users
+    return TEMPLATES.TemplateResponse("users/users.html", {"request": request, "users": users})
 
 
 @user_routers.get("/{id_}", response_class=HTMLResponse)
-@user_routers.get("/{id_}/api/v1", response_model=UserSchema)
-async def retrieve_user(id_: str, session: Session = Depends(get_db)):
+async def retrieve_user(request: Request, id_: str, session: Session = Depends(get_db)):
     """Retrieve a user from the database."""
     user = session.query(User).filter(User.id == id_).one_or_none()
 
     if user:
-        return user
+        return TEMPLATES.TemplateResponse("users.html", {"request": request, "users": user})
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
         detail="User not found"
@@ -54,9 +49,8 @@ async def retrieve_user(id_: str, session: Session = Depends(get_db)):
 
 
 @user_routers.put("/{id_}/update", response_class=HTMLResponse)
-@user_routers.put("/{id_}/update/api/v1", response_model=UserSchema)
 async def update_user(
-    id_: str, user: UserUpdate,
+    id_: str, user: UserUpdate, request: Request,
     current_user: str = Depends(get_current_user),
     session: Session = Depends(get_db)
 ):
@@ -81,7 +75,6 @@ async def update_user(
 
 
 @user_routers.delete("/{id_}/delete")
-@user_routers.delete("/{id_}/delete/api/v1")
 async def delete_user(
     id_: str, session: Session = Depends(get_db),
     current_user: str = Depends(get_current_user),
@@ -104,8 +97,7 @@ async def delete_user(
     )
 
 
-@user_routers.post("/create", response_model=HTMLResponse)
-@user_routers.post("/create/api/v1", response_model=UserSchema)
+@user_routers.post("/create", response_model=UserSchema)
 async def create_user(
     user: UserCreate, response: Response,
     session: Session = Depends(get_db)
