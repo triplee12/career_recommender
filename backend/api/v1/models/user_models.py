@@ -20,7 +20,7 @@ class User(Base):
     full_name = Column(String(150), nullable=False)
     username = Column(String(50), nullable=False, unique=True)
     email = Column(String(150), nullable=False, unique=True)
-    password = Column(String(20), nullable=False)
+    password = Column(String, nullable=False)
     preferences = relationship("Course", back_populates="user")
     ratings = relationship("Rating", back_populates="user")
     created_at = Column(
@@ -28,7 +28,7 @@ class User(Base):
         server_default=text("now()")
     )
     updated_at = Column(
-        DateTime(timezone=True), server_default=None,
+        DateTime(timezone=True), default=None,
         index=False
     )
 
