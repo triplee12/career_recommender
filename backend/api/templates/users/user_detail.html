@@ -1,0 +1,10 @@
+{% extends './base.html' %} {% block content %}
+<h1>User Detail</h1>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ user.name }}</h5>
+    <p class="card-text">{{ user.email }}</p>
+  </div>
+</div>
+<a href="{{ url_for('retrieve_users') }}" class="btn btn-primary">Back</a>
+{% endblock %}
