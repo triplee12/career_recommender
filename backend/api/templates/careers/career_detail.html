@@ -1,0 +1,10 @@
+{% extends './base.html' %} {% block content %}
+<h1>Career Detail</h1>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ career.title }}</h5>
+    <p class="card-text">{{ career.description }}</p>
+  </div>
+</div>
+<a href="{{ url_for('retrieve_careers') }}" class="btn btn-primary">Back</a>
+{% endblock %}

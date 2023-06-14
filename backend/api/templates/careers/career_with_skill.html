@@ -1,0 +1,26 @@
+{% extends './base.html' %} {% block content %}
+<h1>Career with Skills List</h1>
+<div class="row">
+  {% for career_skill in career_skills %}
+  <div class="col-md-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ career_skill.career.title }}</h5>
+        <p class="card-text">{{ career_skill.career.description }}</p>
+        <h6 class="card-subtitle mb-2 text-muted">Skills:</h6>
+        <ul class="list-unstyled">
+          {% for skill in career_skill.skills %}
+          <li>{{ skill.name }}</li>
+          {% endfor %}
+        </ul>
+        <a
+          href="{{ url_for('retrieve_one_career_with_skill', career_id=career_skill.career.id) }}"
+          class="btn btn-primary"
+          >View</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
