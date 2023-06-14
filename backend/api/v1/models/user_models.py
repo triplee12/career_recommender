@@ -21,7 +21,7 @@ class User(Base):
     username = Column(String(50), nullable=False, unique=True)
     email = Column(String(150), nullable=False, unique=True)
     password = Column(String, nullable=False)
-    preferences = relationship("Course", back_populates="user")
+    preferences = relationship("Preference", back_populates="user")
     ratings = relationship("Rating", back_populates="user")
     created_at = Column(
         TIMESTAMP(timezone=True), nullable=False,
