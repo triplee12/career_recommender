@@ -22,6 +22,7 @@ class CourseCreate(CourseBase):
     """Create a new Course."""
 
     owner_id: Optional[str]
+    career_id: int
 
 
 class CourseUpdate(CourseBase):

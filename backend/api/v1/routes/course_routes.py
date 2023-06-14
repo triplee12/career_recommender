@@ -39,13 +39,12 @@ async def update_course(
     current_user: str = Depends(get_current_user)
 ):
     """Update a Course."""
-    if current_user.username == "superuser":
-        get_course = Session.query(Course).filter(Course.id == id_)
+    if current_user.username == "tester":
+        get_course = session.query(Course).filter(Course.id == id_)
         if get_course.first():
-            new_course = get_course.update(**course)
+            get_course.update(course.dict(), synchronize_session=False)
             session.commit()
-            session.refresh(new_course)
-            return new_course
+            return get_course.first()
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Course not found"
@@ -63,7 +62,7 @@ async def delete_course(
     current_user: str = Depends(get_current_user)
 ):
     """Update a Course."""
-    if current_user.username == "superuser":
+    if current_user.username == "tester":
         get_course = Session.query(Course).filter(Course.id == id_)
         if get_course.first():
             get_course.delete()
@@ -86,7 +85,7 @@ async def create_course(
     current_user: str = Depends(get_current_user)
 ):
     """Update a Course."""
-    if current_user.username == "superuser":
+    if current_user.username == "tester":
         course.owner_id = current_user.id
         new_course = Course(**course.dict())
         session.add(new_course)
