@@ -23,6 +23,7 @@ class Career(Base):
         ForeignKey("users.id", ondelete="CASCADE"),
         nullable=False
     )
+    preferences = relationship("Preference", back_populates="career")
     created_at = Column(
         TIMESTAMP(timezone=True), nullable=False,
         server_default=text("now()")

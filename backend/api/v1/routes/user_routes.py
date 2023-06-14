@@ -32,16 +32,25 @@ user_routers = APIRouter(prefix="/users", tags=["users"])
 async def retrieve_users(request: Request, session: Session = Depends(get_db)):
     """Retrieve users from the database."""
     users = session.query(User).all()
-    return TEMPLATES.TemplateResponse("users/users.html", {"request": request, "users": users})
+    return TEMPLATES.TemplateResponse(
+        "users/users.html",
+        {"request": request, "users": users}
+    )
 
 
 @user_routers.get("/{id_}", response_class=HTMLResponse)
-async def retrieve_user(request: Request, id_: str, session: Session = Depends(get_db)):
+async def retrieve_user(
+    request: Request, id_: str,
+    session: Session = Depends(get_db)
+):
     """Retrieve a user from the database."""
     user = session.query(User).filter(User.id == id_).one_or_none()
 
     if user:
-        return TEMPLATES.TemplateResponse("users.html", {"request": request, "users": user})
+        return TEMPLATES.TemplateResponse(
+            "users/user_detail.html",
+            {"request": request, "users": user}
+        )
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
         detail="User not found"
@@ -50,7 +59,8 @@ async def retrieve_user(request: Request, id_: str, session: Session = Depends(g
 
 @user_routers.put("/{id_}/update", response_class=HTMLResponse)
 async def update_user(
-    id_: str, user: UserUpdate, request: Request,
+    id_: str, user: UserUpdate,
+    request: Request,
     current_user: str = Depends(get_current_user),
     session: Session = Depends(get_db)
 ):
@@ -59,10 +69,10 @@ async def update_user(
 
     if get_user.first().id == current_user.id:
         get_user.first().updated_at = datetime.utcnow()
-        get_user.update(**user.dict())
+        get_user.update(user.dict(), synchronize_session=False)
         session.commit()
         session.refresh(get_user)
-        return get_user
+        return RedirectResponse(url=f"/users/{id_}")
     elif get_user.first().id != current_user.id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -76,7 +86,8 @@ async def update_user(
 
 @user_routers.delete("/{id_}/delete")
 async def delete_user(
-    id_: str, session: Session = Depends(get_db),
+    id_: str, request: Request,
+    session: Session = Depends(get_db),
     current_user: str = Depends(get_current_user),
 ):
     """Delete a user from the database."""
@@ -97,9 +108,10 @@ async def delete_user(
     )
 
 
-@user_routers.post("/create", response_model=UserSchema)
+@user_routers.post("/create", response_class=HTMLResponse)
 async def create_user(
-    user: UserCreate, response: Response,
+    user: UserCreate, request: Request,
+    response: Response,
     session: Session = Depends(get_db)
 ):
     """Create a new user."""
@@ -111,7 +123,7 @@ async def create_user(
             session.commit()
             session.refresh(new_user)
             response.status_code = status.HTTP_201_CREATED
-            return new_user
+            return RedirectResponse(url="/users/login_basic")
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail="Error creating user"
@@ -161,8 +173,9 @@ def login_token(
     )
 
 
-@user_routers.post("/login_basic")
+@user_routers.post("/login_basic", response_class=HTMLResponse)
 async def login_basic(
+    request: Request,
     auth: BasicAuth = Depends(basic_auth),
     session: Session = Depends(get_db)
 ):
@@ -196,7 +209,7 @@ async def login_basic(
 
             token = jsonable_encoder(access_token)
 
-            response = RedirectResponse(url="/api/v1/courses")
+            response = RedirectResponse(url="/courses")
             response.set_cookie(
                 "Authorization",
                 value=f"Bearer {token}",
