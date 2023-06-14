@@ -91,10 +91,9 @@ async def update_career(
     if current_user:
         get_career = session.query(Career).filter(Career.id == id_)
         if get_career.one_or_none().user_id == current_user.id:
-            update_c = get_career.update(**career.dict())
+            get_career.update(**career.dict())
             session.commit()
-            session.refresh(update_c)
-            return update_c
+            return get_career.one_or_none()
         elif get_career.one_or_none().user_id != current_user.id:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,

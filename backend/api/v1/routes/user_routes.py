@@ -71,7 +71,6 @@ async def update_user(
         get_user.first().updated_at = datetime.utcnow()
         get_user.update(user.dict(), synchronize_session=False)
         session.commit()
-        session.refresh(get_user)
         return RedirectResponse(url=f"/users/{id_}")
     elif get_user.first().id != current_user.id:
         raise HTTPException(
