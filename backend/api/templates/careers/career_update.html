@@ -1,0 +1,39 @@
+{% extends './base.html' %} {% block content %}
+<h1>Edit Career</h1>
+<div class="card">
+  <div class="card-body">
+    <form
+      action="{{ url_for('update_career', career_id=career.id) }}"
+      method="post"
+    >
+      <div class="mb-3">
+        <label for="title" class="form-label">Title:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="form-control"
+          value="{{ career.title }}"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description:</label>
+        <textarea
+          id="description"
+          name="description"
+          class="form-control"
+          rows="4"
+          required
+        >
+{{ career.description }}</textarea
+        >
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a href="{{ url_for('retrieve_careers') }}" class="btn btn-default"
+        >Cancel</a
+      >
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends './base.html' %} {% block content %}
+<h1>Career with Skills Detail</h1>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ career_skill.career.title }}</h5>
+    <p class="card-text">{{ career_skill.career.description }}</p>
+    <h6 class="card-subtitle mb-2 text-muted">Skills:</h6>
+    <ul class="list-unstyled">
+      {% for skill in career_skill.skills %}
+      <li>{{ skill.name }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<a href="{{ url_for('list_career_with_skills') }}" class="btn btn-primary"
+  >Back</a
+>
+{% endblock %}
