@@ -38,18 +38,18 @@ async def retrieve_users(request: Request, session: Session = Depends(get_db)):
     )
 
 
-@user_routers.get("/{id_}", response_class=HTMLResponse)
+@user_routers.get("/{user_id}", response_class=HTMLResponse)
 async def retrieve_user(
-    request: Request, id_: str,
+    request: Request, user_id: str,
     session: Session = Depends(get_db)
 ):
     """Retrieve a user from the database."""
-    user = session.query(User).filter(User.id == id_).one_or_none()
+    user = session.query(User).filter(User.id == user_id).one_or_none()
 
     if user:
         return TEMPLATES.TemplateResponse(
             "users/user_detail.html",
-            {"request": request, "users": user}
+            {"request": request, "user": user}
         )
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND,
@@ -57,21 +57,21 @@ async def retrieve_user(
     )
 
 
-@user_routers.put("/{id_}/update", response_class=HTMLResponse)
+@user_routers.put("/{user_id}/update", response_class=HTMLResponse)
 async def update_user(
-    id_: str, user: UserUpdate,
+    user_id: str, user: UserUpdate,
     request: Request,
     current_user: str = Depends(get_current_user),
     session: Session = Depends(get_db)
 ):
     """Update a user's data in the database."""
-    get_user = session.query(User).filter(User.id == id_)
+    get_user = session.query(User).filter(User.id == user_id)
 
     if get_user.first().id == current_user.id:
         get_user.first().updated_at = datetime.utcnow()
         get_user.update(user.dict(), synchronize_session=False)
         session.commit()
-        return RedirectResponse(url=f"/users/{id_}")
+        return RedirectResponse(url=f"/users/{user_id}")
     elif get_user.first().id != current_user.id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -83,14 +83,14 @@ async def update_user(
     )
 
 
-@user_routers.delete("/{id_}/delete")
+@user_routers.delete("/{user_id}/delete")
 async def delete_user(
-    id_: str, request: Request,
+    user_id: str, request: Request,
     session: Session = Depends(get_db),
     current_user: str = Depends(get_current_user),
 ):
     """Delete a user from the database."""
-    user = session.query(User).filter(User.id == id_)
+    user = session.query(User).filter(User.id == user_id)
 
     if user.first().id == current_user.id:
         user.delete()

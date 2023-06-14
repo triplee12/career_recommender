@@ -1,114 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- SEO Meta Tags -->
-    <meta name="author" content="Ayoub Berdeddouch">
-
-    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
-	<meta property="og:site_name" content="" /> <!-- website name -->
-	<meta property="og:site" content="" /> <!-- website link -->
-	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
-	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
-	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
-	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
-	<meta property="og:type" content="article" />
-
-    <!-- Website Title -->
-    <title>Columbia - Career Recommendation System</title>
-    
-    <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
-	<link href="{{url_for('static', path='css/styles.css')}}" rel="stylesheet">
-    <link href="{{url_for('static', path='css/fontawesome-all.css')}}" rel="stylesheet">
-    <link href="{{url_for('static', path='css/swiper.css')}}" rel="stylesheet">
-    <link href="{{url_for('static', path='css/magnific-popup.css')}}" rel="stylesheet">
-	<link href="{{url_for('static', path='css/bootstrap.css')}}" rel="stylesheet">
-
-	
-	
-
-	
-	<!-- Favicon  -->
-    <link rel="icon" href="{{url_for('static', path='images/recomm.png')}}" >
-</head>
-<body data-spy="scroll" data-target=".fixed-top">
-    
-    <!-- Preloader -->
-	<div class="spinner-wrapper">
-        <div class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
-        </div>
-    </div>
-    <!-- end of preloader -->
-    
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
-        <!-- Text Logo - Use this if you don't have a graphic logo -->
-        <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Aria</a> -->
-        <!-- Image Logo -->
-        <a class="navbar-brand logo-image" href="/"><img src="{{url_for('static', path='images/logo_recsys.png')}}" style="height: ;40px,width:40px;" 	alt="alternative"></a>
-        
-        <!-- Mobile Menu Toggle Button -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-awesome fas fa-bars"></span>
-            <span class="navbar-toggler-awesome fas fa-times"></span>
-        </button>
-        <!-- end of mobile menu toggle button -->
-
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#Recommendation">RECOMMENDATION</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#courses">COURSES</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#Visualize">VISUALIZE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#Insights">INSIGHTS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#contact">CONTACT</a>
-                </li>
-            </ul>
-           
-        </div>
-    </nav> <!-- end of navbar -->
-    <!-- end of navbar -->
-
-
-    <!-- Header -->
+{% extends "base.html" %}
+{% block title %}Career Recommendation System{%endblock title %}
+{% block content %}
+<!-- Header -->
     <header id="header" class="header">
-        <div class="header-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-container">
-                            <h1>Career Data <span id="js-rotating"> Analysis, Recommendation, Visualization</span></h1>
-                            <p class="p-heading p-large"></p>
-                            <a class="btn-solid-lg page-scroll" href="#Recommendation">Get Recommendation</a>    
-							<!-- <a class="btn-solid-lg page-scroll" href="#Visualize">Visualize Data</a> -->
-
-                        </div>
-                    </div> <!-- end of col -->
-                </div> <!-- end of row -->
-            </div> <!-- end of container -->
-        </div> <!-- end of header-content -->
-    </header> <!-- end of header -->
+      <div class="header-content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="text-container">
+                <h1>
+                  Career Data
+                  <span id="js-rotating">
+                    Analysis, Recommendation, Visualization
+                    </span>
+                </h1>
+                <p class="p-heading p-large"></p>
+                <a class="btn-solid-lg page-scroll" href="#Recommendation"
+                  >Get Recommendation</a
+                >
+                <!-- <a class="btn-solid-lg page-scroll" href="#Visualize">Visualize Data</a> -->
+              </div>
+            </div>
+            <!-- end of col -->
+          </div>
+          <!-- end of row -->
+        </div>
+        <!-- end of container -->
+      </div>
+      <!-- end of header-content -->
+    </header>
     <!-- end of header -->
-
+    <!-- end of header -->
 <!-- Description -->
     <div id="Predict" class="cards-1">
         <div class="container">
@@ -567,79 +489,4 @@
         </div> <!-- end of container -->
     </div> <!-- end of counter -->
     <!-- end of about -->
-
-    <!-- Footer -->
-    <div id=contact class="footer">
-        <div class="container">
-            <div class="row">
-            <img class="card-image" src="{{url_for('static', path='images/Colombia2.png')}}"  width="150" height="150" alt="alternative">
-
-                <div class="col-md-6">
-                    <div class="text-container about">
-                        <h4>Developed by:</h4>
-                        <h2 class="white">Omdena - Chapter Colombia Team</h2>
-                        <!-- <p class="white"><i class="fas fa-briefcase">&nbsp;&nbsp;Data Scientist &amp; Associate Cloud Engineer &amp; Ph.D. Candidate</i></p>
-                        <p class="white"><i class="fa fa-map-marker" aria-hidden="true">&nbsp;&nbsp;Morocco</i></p>
-                        <p class="white"><i class="fa fa-envelope" aria-hidden="true">&nbsp;&nbsp;ayoub.berd@gmail.com</i></p>
-                     -->
-                    </div> <!-- end of text-container -->
-                </div> <!-- end of col -->
-                <div class="col-md-2">
-                    <div class="text-container">
-                        <h4>Connect</h4>
-                        <ul class="list-unstyled li-space-lg white">
-                            <li>
-                                <a class="white" href="https://omdena.com/omdena-chapter-page-colombia/"><i class="fab fa-linkedin-in"></i></a>&nbsp;&nbsp;<a class="white" href="https://github.com/OmdenaAI/omdena-colombia-career-recommender-system"><i class="fab fa-github"></i></a>
-                            </li>
-                            
-                        </ul>
-                    </div> <!-- end of text-container -->
-                </div> <!-- end of col -->
-                <div class="col-md-2">
-                    <div class="text-container">
-                        <h4>Tools Used</h4>
-                        <ul class="list-unstyled li-space-lg">
-                            <li>
-                                <a class="white" href="#">Python</a>
-                            </li>
-                            <li>
-                               <a class="white" href="#">Seaborn &amp; Matplotlib &amp; Plotly</a>
-                            </li>
-                            <li class="media">
-                                <a class="white" href="#">Scikit-learn</a>
-                            </li>
-                            <li class="media">
-                                <a class="white" href="#">Flask</a>
-                            </li>
-                            <li class="media">
-                                <a class="white" href="#">Scikit-learn</a>
-                            </li>
-                            <li class="media">
-                                <a class="white" href="#">SweetViz</a>
-                            </li>
-                            <li class="media">
-                                <a class="white" href="#">LIME</a>
-                            </li>
-                        </ul>
-                    </div> <!-- end of text-container -->
-                </div> <!-- end of col -->
-                
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of footer -->  
-    <!-- end of footer -->
-
-    
-    	
-    <!-- Scripts -->
-    <script src="{{url_for('static', path='js/jquery.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-	<script src="{{url_for('static', path='js/popper.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="{{url_for('static', path='js/bootstrap.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="{{url_for('static', path='js/jquery.easing.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="{{url_for('static', path='js/jquery.magnific-popup.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="{{url_for('static', path='js/morphext.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="{{url_for('static', path='js/isotope.pkgd.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="{{url_for('static', path='js/validator.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-	<script src="{{url_for('static', path='js/scripts.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-</body>
-</html>
+{% endblock content %}
