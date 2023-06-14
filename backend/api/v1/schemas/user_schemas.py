@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """User schema for the career recommendation."""
 from datetime import datetime
+from typing import Optional
 from pydantic import BaseModel, EmailStr
 
 
@@ -37,8 +38,12 @@ class UserCreate(UserBase):
     password: str
 
 
-class UserUpdate(UserBase):
+class UserUpdate(BaseModel):
     """Update user data schema."""
+
+    full_name: Optional[str]
+    username: Optional[str]
+    email: Optional[EmailStr]
 
 
 class User(UserBase):
