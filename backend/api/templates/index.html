@@ -111,7 +111,7 @@
                     <!-- Call Me Form -->
                     <form id="callMeForm" data-toggle="validator" data-focus="false">
                         <div class="form-group">
-							<a type="submit" class="form-control-submit-button" href="career_rs">Recommendation</a>
+							<a type="submit" class="form-control-submit-button" href="{{ url_for('show_recommendation') }}">Recommendation</a>
                         </div>   
                     </form>
                     <!-- end of call me form -->
@@ -147,12 +147,12 @@
 				    <!-- Call Me Form -->
                     <form id="callMeForm" data-toggle="validator" data-focus="false">
                         <div class="form-group">
-                            <a type="submit" class="form-control-submit-button" href="report1">Report on the whole Dataset as Target <span>Career_Major</a>
+                            <a type="submit" class="form-control-submit-button" href="{{ url_for('show_report1') }}">Report on the whole Dataset as Target <span>Career_Major</a>
                         </div>
                         <!-- Call Me Form -->
                     <form id="callMeForm" data-toggle="validator" data-focus="false">
                         <div class="form-group">
-                            <a type="submit" class="form-control-submit-button" href="report2">Report on the whole Dataset as Target <span>Career_Minor</a>
+                            <a type="submit" class="form-control-submit-button" href="{{ url_for('show_report2') }}">Report on the whole Dataset as Target <span>Career_Minor</a>
                         </div>   
                     </form>   
                     </form>
