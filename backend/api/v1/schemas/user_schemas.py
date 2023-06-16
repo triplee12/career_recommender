@@ -2,7 +2,7 @@
 """User schema for the career recommendation."""
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 
 
 class AccessToken(BaseModel):
@@ -18,24 +18,19 @@ class TokenData(BaseModel):
     id: str
 
 
-class UserBase(BaseModel):
+class UserCreate(BaseModel):
     """
-    User base class.
+    Create a new user schema.
 
-    Attributes:
+    Attrs:
         full_name (str): full name of the user
         email (str): email of the user
     """
 
-    full_name: str
-    username: str
+    full_name: str = Field(required=True, min_length=8)
+    username: str = Field(required=True, min_length=3)
     email: EmailStr
-
-
-class UserCreate(UserBase):
-    """Create a new user schema."""
-
-    password: str
+    password: str = Field(required=True, min_length=8)
 
 
 class UserUpdate(BaseModel):
@@ -46,7 +41,7 @@ class UserUpdate(BaseModel):
     email: Optional[EmailStr]
 
 
-class User(UserBase):
+class User(BaseModel):
     """
     User response object schema.
 
@@ -56,9 +51,19 @@ class User(UserBase):
     """
 
     id: str
+    full_name: str
+    username: str
+    email: EmailStr
     created_at: datetime
 
     class Config:
         """Serialization class."""
 
         orm_mode = True
+
+
+class Login(BaseModel):
+    """Sign in user schema."""
+
+    username: str = Field(..., min_length=5)
+    password: str = Field(..., min_length=8)

@@ -3,7 +3,10 @@
   <div class="card-body">
     <h1>User Logout</h1>
     <p>Are you sure you want to logout?</p>
-    <form action="{{ url_for('logout') }}" method="post">
+    <form
+      action="{{ url_for('route_logout_and_remove_cookie') }}"
+      method="post"
+    >
       <button type="submit" class="btn btn-primary">Logout</button>
     </form>
   </div>
