@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Career recommendation entry point."""
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request, status
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -31,6 +31,19 @@ app.add_middleware(
     allow_headers=["*"],
     expose_headers=["set-cookie"],
 )
+
+
+@app.exception_handler(status.HTTP_404_NOT_FOUND)
+async def http_exception_handler(
+    request: Request,
+    exc: HTTPException
+):
+    """Generic 404 error handler."""
+    if exc.status_code == status.HTTP_404_NOT_FOUND:
+        return TEMPLATES.TemplateResponse(
+            "404.html", {"request": request}
+        )
+    return None
 
 
 @app.get("/", response_class=HTMLResponse)
