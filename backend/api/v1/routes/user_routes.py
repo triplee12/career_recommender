@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """User routes modules."""
-import base64
 from datetime import datetime
-from typing import List
 from fastapi import (
     APIRouter, Depends, status,
     Response, HTTPException, Request
@@ -15,11 +13,9 @@ from sqlalchemy.orm import Session
 from backend.api.db_config import get_db
 from backend.api.settings import settings, TEMPLATES
 from backend.api.v1.models.user_models import User
-from backend.api.v1.schemas.user_schemas import (
-    UserCreate, UserUpdate, User as UserSchema
-)
+from backend.api.v1.schemas.user_schemas import UserUpdate
 from backend.api.v1.auths.oauth import (
-    get_current_user, basic_auth, BasicAuth, create_token
+    get_current_user, create_token
 )
 from backend.api.v1.utils import (
     verify_pwd, hash_pwd
@@ -71,7 +67,10 @@ async def update_user(
         get_user.first().updated_at = datetime.utcnow()
         get_user.update(user.dict(), synchronize_session=False)
         session.commit()
-        return RedirectResponse(url=f"/users/{user_id}")
+        return RedirectResponse(
+            url=f"/users/{user_id}",
+            status_code=status.HTTP_302_FOUND
+        )
     elif get_user.first().id != current_user.id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -95,7 +94,10 @@ async def delete_user(
     if user.first().id == current_user.id:
         user.delete()
         session.commit()
-        return RedirectResponse(url="/")
+        return RedirectResponse(
+            url="/",
+            status_code=status.HTTP_302_FOUND
+        )
     elif user.first().id != current_user.id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -107,22 +109,34 @@ async def delete_user(
     )
 
 
-@user_routers.post("/create", response_class=HTMLResponse)
+@user_routers.post("/create")
 async def create_user(
-    user: UserCreate, request: Request,
     response: Response,
+    request: Request,
     session: Session = Depends(get_db)
 ):
     """Create a new user."""
     try:
-        user.password = hash_pwd(user.password)
-        new_user = User(**user.dict())
+        form = await request.form()
+        password = form.get("password")
+        password = hash_pwd(password)
+        print(password)
+        user = {
+            "full_name": form.get("full_name"),
+            "username": form.get("username"),
+            "password": password,
+            "email": form.get("email")
+        }
+        new_user = User(**user)
         if new_user:
             session.add(new_user)
             session.commit()
             session.refresh(new_user)
             response.status_code = status.HTTP_201_CREATED
-            return RedirectResponse(url="/users/login_basic")
+            return RedirectResponse(
+                url="/users/show/login",
+                status_code=status.HTTP_302_FOUND
+                )
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail="Error creating user"
@@ -133,6 +147,15 @@ async def create_user(
             status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail="User with username or email already exists"
         ) from error
+
+
+@user_routers.get("/show/create", response_class=HTMLResponse)
+async def show_create_form(request: Request):
+    """Show a form to create a new user."""
+    return TEMPLATES.TemplateResponse(
+        "users/signup.html",
+        {"request": request}
+    )
 
 
 @user_routers.post("/login_token")
@@ -175,20 +198,13 @@ def login_token(
 @user_routers.post("/login_basic", response_class=HTMLResponse)
 async def login_basic(
     request: Request,
-    auth: BasicAuth = Depends(basic_auth),
     session: Session = Depends(get_db)
 ):
     """Login basic authentication."""
-    if not auth:
-        response = Response(
-            headers={"WWW-Authenticate": "Basic"},
-            status_code=status.HTTP_401_UNAUTHORIZED
-        )
-        return response
-
     try:
-        decoded = base64.b64decode(auth).decode("ascii")
-        username, _, password = decoded.partition(":")
+        form = await request.form()
+        username = form.get("username")
+        password = form.get("password")
         user = session.query(User).filter(
             User.username == username
         ).first()
@@ -208,7 +224,10 @@ async def login_basic(
 
             token = jsonable_encoder(access_token)
 
-            response = RedirectResponse(url="/courses")
+            response = RedirectResponse(
+                url="/courses",
+                status_code=status.HTTP_302_FOUND
+            )
             response.set_cookie(
                 "Authorization",
                 value=f"Bearer {token}",
@@ -227,9 +246,30 @@ async def login_basic(
         return response
 
 
-@user_routers.get("/logout")
+@user_routers.get("/show/login", response_class=HTMLResponse)
+async def show_signin_form(request: Request):
+    """Show a form to login a user."""
+    return TEMPLATES.TemplateResponse(
+        "users/signin.html",
+        {"request": request}
+    )
+
+
+@user_routers.post("/logout")
 async def route_logout_and_remove_cookie():
     """Logout the user."""
-    response = RedirectResponse(url="/")
+    response = RedirectResponse(
+        url="/",
+        status_code=status.HTTP_302_FOUND
+    )
     response.delete_cookie("Authorization", domain="http://127.0.0.1:8000")
     return response
+
+
+@user_routers.get("/show/logout", response_class=HTMLResponse)
+async def show_logout_form(request: Request):
+    """Show a form to login a user."""
+    return TEMPLATES.TemplateResponse(
+        "users/logout.html",
+        {"request": request}
+    )
