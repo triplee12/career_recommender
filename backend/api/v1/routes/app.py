@@ -34,7 +34,7 @@ app.add_middleware(
 
 
 @app.exception_handler(status.HTTP_404_NOT_FOUND)
-async def http_exception_handler(
+async def http_404_exception_handler(
     request: Request,
     exc: HTTPException
 ):
@@ -42,6 +42,19 @@ async def http_exception_handler(
     if exc.status_code == status.HTTP_404_NOT_FOUND:
         return TEMPLATES.TemplateResponse(
             "404.html", {"request": request}
+        )
+    return None
+
+
+@app.exception_handler(status.HTTP_403_FORBIDDEN)
+async def http_403_exception_handler(
+    request: Request,
+    exc: HTTPException
+):
+    """Generic 403 error handler."""
+    if exc.status_code == status.HTTP_403_FORBIDDEN:
+        return TEMPLATES.TemplateResponse(
+            "users/signin.html", {"request": request}
         )
     return None
 

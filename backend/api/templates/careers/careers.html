@@ -13,12 +13,12 @@
           >View</a
         >
         <a
-          href="{{ url_for('update_career', career_id=career.id) }}"
+          href="{{ url_for('show_update_career_form', career_id=career.id) }}"
           class="btn btn-info"
           >Edit</a
         >
         <a
-          href="{{ url_for('delete_career', career_id=career.id) }}"
+          href="{{ url_for('show_delete_career_form', career_id=career.id) }}"
           class="btn btn-danger"
           >Delete</a
         >
